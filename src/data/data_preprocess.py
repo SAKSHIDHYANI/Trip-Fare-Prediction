@@ -1,4 +1,4 @@
-class DataPreparation:
+class PreProcess:
     
     def __init__(self):
         pass
@@ -27,18 +27,20 @@ class DataPreparation:
       df = df[(df['dropoff_longitude'] > invalid_dropoff_longitude_max) & (df['dropoff_latitude'] > invalid_dropoff_latitude_max) & (df['dropoff_latitude'] < invalid_dropoff_latitude_min)  ]
       return df
   
-    def outlier_points(self):
+    def outlier_points(self,train):
         '''
            To remove outlier points using invalid location iteratively
         
         '''
-        obj = DataPreparation()
+        obj = PreProcess()
         tripdata1 = obj.invalid_location(train,-74,40,40.5)
         train=train[~train.isin(tripdata1)].dropna(how = 'all')
         tripdata1 = obj.invalid_location(train,-73.75,40.5,40.8)
         train=train[~train.isin(tripdata1)].dropna(how = 'all')
         tripdata1 = obj.invalid_location(train,-73.61,40.5,41)
         train=train[~train.isin(tripdata1)].dropna(how = 'all')
+        return train
+        
   
     def invalid_distance(self,df):
         '''

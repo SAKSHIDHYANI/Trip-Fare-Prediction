@@ -1,0 +1,114 @@
+
+/*This section involves the overall style of main tags*/
+* {
+    font-family: sans-serif;
+}
+body {
+    background-color: lightblue;
+    background-size: cover;
+}
+form {
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    font-size: 350%;
+}
+button {
+    font-weight: bold;
+    background-color: #4CAF50;
+    padding: 8px 16px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius:3px;
+    color: black;
+    border-color: black;
+    font-family: Arial;
+    border-style: ridge;
+}
+input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box
+}
+
+/*Margin, layout and design of paragraphs and structures*/
+.para {
+    text-align:center;
+}
+.result {
+    font-weight: bold;
+    background-color: #4CAF50;
+    padding: 8px 16px;
+    display: inline-block;
+    text-decoration: none;
+    border-radius:3px;
+    color: black;
+    border-color: black;
+    font-family: Arial;
+    border-style: ridge;
+}
+.Note {
+    text-align: center;
+    color: red;
+    margin: 7px;
+    padding: 7px 0px;
+}
+.pred {
+    text-align:center;
+}
+.intro {
+    font-size: 20px;
+}
+
+/*Layout and structure of form body in page*/
+div.container {
+    background-color: rgba(0,0,0,0.5);
+    font-size: 18px;
+    margin: 1%;
+    border-radius: 10px;
+    border: 1px soid rgba)255,255,255,0.3);
+    box-shadow: 2px 2px 15px
+
+}
+div.page {
+    width: 400px;
+    margin: 100px auto 0px auto;
+}
+form.info {
+    margin: 15px;
+}
+
+/*This section involves the design of the inputs in the form*/
+
+
+
+/*Responsible for shadow backgrounds*/
+
+.table {
+    display: table;   
+    margin: 0 auto;
+    margin-left: 33.85%;
+}
+
+ul#horizontal-list {
+    min-width: 696px;
+    list-style: none;
+}
+
+
+
+
+div.title h1 {
+    display:inline-block;
+    vertical-align:middle;
+    padding-left: 30%;
+    font-family: "Copperplate Gothic Light";
+}
+
+/*Animation for links*/
+a:link {color:blue}
+a:visited {color:black}
+a:active {color:red}
+a:hover {font-size: 120%; color:black}
+view rawstyling.css hosted with ❤ by GitHub

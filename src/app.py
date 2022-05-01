@@ -1,9 +1,11 @@
+'''
+module to run flask app
+'''
 #Import main library
-import numpy as np
 import os
+import numpy as np
 import pandas as pd
 import features.build_features
-
 #Import Flask modules
 from flask import Flask, request, render_template
 
@@ -14,19 +16,25 @@ import pickle
 app = Flask(__name__, template_folder = 'templates')
 app.config['DEBUG'] = True
 #Open our model 
-d = os.path.dirname(os.getcwd())
-path = d+"\\src\\models\\dtr_model_pkl"
-model = pickle.load(open(path,'rb'))
+#d = os.path.dirname(os.getcwd())
+#path = d+"\\src\\models\\dtr_model_pkl"
+#model = pickle.load(open(path,'rb'))
+model = pickle.load(open('dtr_model_pkl','rb'))
 
 #create our "home" route using the "index.html" page
 @app.route('/')
 def home():
+    '''
+    template render
+    '''
     return render_template('index.html')
 
 #Set a post method to yield predictions on page
 @app.route('/', methods = ['POST'])
 def predict():
-    
+    '''
+    predicting fare based on user inputs
+    '''
     #obtain all form values and place them in an array, convert into integers
     features1 = [x for x in request.form.values()]
     #Combine them all into a final numpy array
@@ -47,23 +55,18 @@ def predict():
     final_features.append(direction)   
     final_features.append(int(values[5]))
     final_features.append(weekday)
-      
     values = np.array(final_features)
     values = [values]
-    
     #predict the price given the values inputted by user
     prediction = model.predict(values)
-    
     #Round the output to 2 decimal places
     output = round(prediction[0], 4)
-    
-    #If the output is negative, the values entered are unreasonable to the context of the application
-    #If the output is greater than 0, return prediction
     if output < 0:
-        return render_template('index.html', prediction_text = "Predicted fare is negative, values entered not reasonable")
+        return render_template('index.html', prediction_text = "Predicted fare is negative")
     elif output >= 0:
-        return render_template('index.html', prediction_text = 'Predicted fare amount of the trip is: ${}'.format(output))   
+        return render_template('index.html', prediction_text = "Predicted Fare amount is: ${}".format(output))   
 
 #Run app
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000,host='0.0.0.0')
+    
